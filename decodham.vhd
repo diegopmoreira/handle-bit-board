@@ -1,0 +1,47 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+ENTITY decodham IS 
+PORT (
+	a : in std_logic_vector (6 downto 0);
+	aout: out std_logic_vector (3 downto 0);
+	erro : out std_logic;
+	p : buffer std_logic_vector (2 downto 0);
+	corrigido: buffer std_logic_vector (6 downto 0);
+	corrigido4: out std_logic_vector (3 downto 0);
+	posicao : out std_logic_vector(2 downto 0)
+
+);
+
+	end decodham;
+	
+	architecture arq_decodham of decodham is
+	SIGNAL aux : std_logic_vector (6 downto 0);
+	begin
+	
+	aout(3)<=a(4);
+	aout(2)<=a(2);
+	aout(1)<=a(1);
+	aout(0)<=a(0);
+	p(0) <= a(6) xor a(4) xor a(2) xor a(0);
+	p(1) <= a(5) xor a(4) xor a(1) xor a(0);
+	p(2) <= a(3) xor a(2) xor a(1) xor a(0);
+	with p select 
+	erro<='0' when "000",
+			'1' when others;
+	with p select
+		aux<=
+		"0010000"	when "011",
+		"0000100"	when "101",
+		"0000010"	when "110",
+		"0000001"	when "111",
+		"0000000" when others;
+		
+		
+		corrigido <= aux xor a;
+		corrigido4(3)<=corrigido(4);
+		corrigido4(2)<=corrigido(2);
+		corrigido4(1)<=corrigido(1);
+		corrigido4(0)<=corrigido(0);
+		
+	end arq_decodham;

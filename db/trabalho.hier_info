@@ -1,0 +1,374 @@
+|trabalho
+a[0] => soma4:x1.a[0]
+a[1] => soma4:x1.a[1]
+a[2] => soma4:x1.a[2]
+a[3] => soma4:x1.a[3]
+b[0] => soma4:x1.b[0]
+b[1] => soma4:x1.b[1]
+b[2] => soma4:x1.b[2]
+b[3] => soma4:x1.b[3]
+s14r1[0] <= seg14recebido:x5.s[0]
+s14r1[1] <= seg14recebido:x5.s[1]
+s14r1[2] <= seg14recebido:x5.s[2]
+s14r1[3] <= seg14recebido:x5.s[3]
+s14r1[4] <= seg14recebido:x5.s[4]
+s14r1[5] <= seg14recebido:x5.s[5]
+s14r1[6] <= seg14recebido:x5.s[6]
+s14r2[0] <= seg14recebido:x5.s1[0]
+s14r2[1] <= seg14recebido:x5.s1[1]
+s14r2[2] <= seg14recebido:x5.s1[2]
+s14r2[3] <= seg14recebido:x5.s1[3]
+s14r2[4] <= seg14recebido:x5.s1[4]
+s14r2[5] <= seg14recebido:x5.s1[5]
+s14r2[6] <= seg14recebido:x5.s1[6]
+s14c1[0] <= seg14corrigido:x6.s[0]
+s14c1[1] <= seg14corrigido:x6.s[1]
+s14c1[2] <= seg14corrigido:x6.s[2]
+s14c1[3] <= seg14corrigido:x6.s[3]
+s14c1[4] <= seg14corrigido:x6.s[4]
+s14c1[5] <= seg14corrigido:x6.s[5]
+s14c1[6] <= seg14corrigido:x6.s[6]
+s14c2[0] <= seg14corrigido:x6.s1[0]
+s14c2[1] <= seg14corrigido:x6.s1[1]
+s14c2[2] <= seg14corrigido:x6.s1[2]
+s14c2[3] <= seg14corrigido:x6.s1[3]
+s14c2[4] <= seg14corrigido:x6.s1[4]
+s14c2[5] <= seg14corrigido:x6.s1[5]
+s14c2[6] <= seg14corrigido:x6.s1[6]
+s7p[0] <= seg7posicao:x7.s[0]
+s7p[1] <= seg7posicao:x7.s[1]
+s7p[2] <= seg7posicao:x7.s[2]
+s7p[3] <= seg7posicao:x7.s[3]
+s7p[4] <= seg7posicao:x7.s[4]
+s7p[5] <= seg7posicao:x7.s[5]
+s7p[6] <= seg7posicao:x7.s[6]
+erro[0] => injeta:x3.erro[0]
+erro[1] => injeta:x3.erro[1]
+erro[2] => injeta:x3.erro[2]
+overflow <= soma4:x1.c4
+errodecod <= decodham:x4.erro
+
+
+|trabalho|soma4:x1
+a[0] => exemplo13_meio_somador:soma1.a
+a[1] => exemplo13_somador_completo:soma2.a
+a[2] => exemplo13_somador_completo:soma3.a
+a[3] => exemplo13_somador_completo:soma4.a
+b[0] => exemplo13_meio_somador:soma1.b
+b[1] => exemplo13_somador_completo:soma2.b
+b[2] => exemplo13_somador_completo:soma3.b
+b[3] => exemplo13_somador_completo:soma4.b
+s[0] <= exemplo13_meio_somador:soma1.s
+s[1] <= exemplo13_somador_completo:soma2.s
+s[2] <= exemplo13_somador_completo:soma3.s
+s[3] <= exemplo13_somador_completo:soma4.s
+c4 <= exemplo13_somador_completo:soma4.c_out
+
+
+|trabalho|soma4:x1|exemplo13_meio_somador:soma1
+a => s.IN0
+a => c_out.IN0
+a => s.IN0
+b => s.IN1
+b => c_out.IN1
+b => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c_out <= c_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trabalho|soma4:x1|exemplo13_somador_completo:soma2
+a => s.IN0
+a => c_out.IN0
+a => c_out.IN0
+b => s.IN1
+b => c_out.IN1
+b => c_out.IN0
+c_in => s.IN1
+c_in => c_out.IN1
+c_in => c_out.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c_out <= c_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trabalho|soma4:x1|exemplo13_somador_completo:soma3
+a => s.IN0
+a => c_out.IN0
+a => c_out.IN0
+b => s.IN1
+b => c_out.IN1
+b => c_out.IN0
+c_in => s.IN1
+c_in => c_out.IN1
+c_in => c_out.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c_out <= c_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trabalho|soma4:x1|exemplo13_somador_completo:soma4
+a => s.IN0
+a => c_out.IN0
+a => c_out.IN0
+b => s.IN1
+b => c_out.IN1
+b => c_out.IN0
+c_in => s.IN1
+c_in => c_out.IN1
+c_in => c_out.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+c_out <= c_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trabalho|hamming:x2
+a[0] => s.IN1
+a[0] => s.IN1
+a[0] => s.IN1
+a[0] => s[0].DATAIN
+a[1] => s.IN0
+a[1] => s.IN0
+a[1] => s[1].DATAIN
+a[2] => s.IN0
+a[2] => s.IN1
+a[2] => s[2].DATAIN
+a[3] => s.IN1
+a[3] => s.IN1
+a[3] => s[4].DATAIN
+s[0] <= a[0].DB_MAX_OUTPUT_PORT_TYPE
+s[1] <= a[1].DB_MAX_OUTPUT_PORT_TYPE
+s[2] <= a[2].DB_MAX_OUTPUT_PORT_TYPE
+s[3] <= s.DB_MAX_OUTPUT_PORT_TYPE
+s[4] <= a[3].DB_MAX_OUTPUT_PORT_TYPE
+s[5] <= s.DB_MAX_OUTPUT_PORT_TYPE
+s[6] <= s.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trabalho|injeta:x3
+a[0] => saida.IN1
+a[1] => saida.IN1
+a[2] => saida.IN1
+a[3] => saida.IN1
+a[4] => saida.IN1
+a[5] => saida.IN1
+a[6] => saida.IN1
+erro[0] => Mux0.IN10
+erro[0] => Mux1.IN10
+erro[0] => Mux2.IN10
+erro[0] => Mux3.IN10
+erro[0] => Mux4.IN10
+erro[0] => Mux5.IN10
+erro[0] => Mux6.IN10
+erro[1] => Mux0.IN9
+erro[1] => Mux1.IN9
+erro[1] => Mux2.IN9
+erro[1] => Mux3.IN9
+erro[1] => Mux4.IN9
+erro[1] => Mux5.IN9
+erro[1] => Mux6.IN9
+erro[2] => Mux0.IN8
+erro[2] => Mux1.IN8
+erro[2] => Mux2.IN8
+erro[2] => Mux3.IN8
+erro[2] => Mux4.IN8
+erro[2] => Mux5.IN8
+erro[2] => Mux6.IN8
+saida[0] <= saida.DB_MAX_OUTPUT_PORT_TYPE
+saida[1] <= saida.DB_MAX_OUTPUT_PORT_TYPE
+saida[2] <= saida.DB_MAX_OUTPUT_PORT_TYPE
+saida[3] <= saida.DB_MAX_OUTPUT_PORT_TYPE
+saida[4] <= saida.DB_MAX_OUTPUT_PORT_TYPE
+saida[5] <= saida.DB_MAX_OUTPUT_PORT_TYPE
+saida[6] <= saida.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trabalho|decodham:x4
+a[0] => p.IN1
+a[0] => p.IN1
+a[0] => p.IN1
+a[0] => corrigido.IN1
+a[0] => aout[0].DATAIN
+a[1] => p.IN1
+a[1] => p.IN1
+a[1] => corrigido.IN1
+a[1] => aout[1].DATAIN
+a[2] => p.IN1
+a[2] => p.IN0
+a[2] => corrigido.IN1
+a[2] => aout[2].DATAIN
+a[3] => p.IN1
+a[3] => corrigido[3].DATAIN
+a[4] => p.IN0
+a[4] => p.IN0
+a[4] => corrigido.IN1
+a[4] => aout[3].DATAIN
+a[5] => p.IN1
+a[5] => corrigido[5].DATAIN
+a[6] => p.IN1
+a[6] => corrigido[6].DATAIN
+aout[0] <= a[0].DB_MAX_OUTPUT_PORT_TYPE
+aout[1] <= a[1].DB_MAX_OUTPUT_PORT_TYPE
+aout[2] <= a[2].DB_MAX_OUTPUT_PORT_TYPE
+aout[3] <= a[4].DB_MAX_OUTPUT_PORT_TYPE
+erro <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+p[0] <= p.DB_MAX_OUTPUT_PORT_TYPE
+p[1] <= p.DB_MAX_OUTPUT_PORT_TYPE
+p[2] <= p.DB_MAX_OUTPUT_PORT_TYPE
+corrigido[0] <= corrigido.DB_MAX_OUTPUT_PORT_TYPE
+corrigido[1] <= corrigido.DB_MAX_OUTPUT_PORT_TYPE
+corrigido[2] <= corrigido.DB_MAX_OUTPUT_PORT_TYPE
+corrigido[3] <= a[3].DB_MAX_OUTPUT_PORT_TYPE
+corrigido[4] <= corrigido.DB_MAX_OUTPUT_PORT_TYPE
+corrigido[5] <= a[5].DB_MAX_OUTPUT_PORT_TYPE
+corrigido[6] <= a[6].DB_MAX_OUTPUT_PORT_TYPE
+corrigido4[0] <= corrigido.DB_MAX_OUTPUT_PORT_TYPE
+corrigido4[1] <= corrigido.DB_MAX_OUTPUT_PORT_TYPE
+corrigido4[2] <= corrigido.DB_MAX_OUTPUT_PORT_TYPE
+corrigido4[3] <= corrigido.DB_MAX_OUTPUT_PORT_TYPE
+posicao[0] <= comb.DB_MAX_OUTPUT_PORT_TYPE
+posicao[1] <= posicao[1].DB_MAX_OUTPUT_PORT_TYPE
+posicao[2] <= posicao[2].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|trabalho|seg14recebido:x5
+entrada[0] => Mux0.IN19
+entrada[0] => Mux1.IN19
+entrada[0] => Mux2.IN19
+entrada[0] => Mux3.IN19
+entrada[0] => Mux4.IN19
+entrada[0] => Mux5.IN19
+entrada[0] => Mux6.IN19
+entrada[1] => Mux0.IN18
+entrada[1] => Mux1.IN18
+entrada[1] => Mux2.IN18
+entrada[1] => Mux3.IN18
+entrada[1] => Mux4.IN18
+entrada[1] => Mux5.IN18
+entrada[1] => Mux6.IN18
+entrada[1] => Mux7.IN10
+entrada[1] => Mux8.IN10
+entrada[1] => Mux9.IN10
+entrada[1] => Mux10.IN10
+entrada[2] => Mux0.IN17
+entrada[2] => Mux1.IN17
+entrada[2] => Mux2.IN17
+entrada[2] => Mux3.IN17
+entrada[2] => Mux4.IN17
+entrada[2] => Mux5.IN17
+entrada[2] => Mux6.IN17
+entrada[2] => Mux7.IN9
+entrada[2] => Mux8.IN9
+entrada[2] => Mux9.IN9
+entrada[2] => Mux10.IN9
+entrada[3] => Mux0.IN16
+entrada[3] => Mux1.IN16
+entrada[3] => Mux2.IN16
+entrada[3] => Mux3.IN16
+entrada[3] => Mux4.IN16
+entrada[3] => Mux5.IN16
+entrada[3] => Mux6.IN16
+entrada[3] => Mux7.IN8
+entrada[3] => Mux8.IN8
+entrada[3] => Mux9.IN8
+entrada[3] => Mux10.IN8
+s[0] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
+s[1] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+s[2] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+s[3] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+s[4] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+s[5] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+s[6] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+s1[0] <= Mux10.DB_MAX_OUTPUT_PORT_TYPE
+s1[1] <= <GND>
+s1[2] <= <GND>
+s1[3] <= Mux9.DB_MAX_OUTPUT_PORT_TYPE
+s1[4] <= Mux8.DB_MAX_OUTPUT_PORT_TYPE
+s1[5] <= Mux7.DB_MAX_OUTPUT_PORT_TYPE
+s1[6] <= <VCC>
+
+
+|trabalho|seg14corrigido:x6
+entrada[0] => Mux0.IN19
+entrada[0] => Mux1.IN19
+entrada[0] => Mux2.IN19
+entrada[0] => Mux3.IN19
+entrada[0] => Mux4.IN19
+entrada[0] => Mux5.IN19
+entrada[0] => Mux6.IN19
+entrada[1] => Mux0.IN18
+entrada[1] => Mux1.IN18
+entrada[1] => Mux2.IN18
+entrada[1] => Mux3.IN18
+entrada[1] => Mux4.IN18
+entrada[1] => Mux5.IN18
+entrada[1] => Mux6.IN18
+entrada[1] => Mux7.IN10
+entrada[1] => Mux8.IN10
+entrada[1] => Mux9.IN10
+entrada[1] => Mux10.IN10
+entrada[2] => Mux0.IN17
+entrada[2] => Mux1.IN17
+entrada[2] => Mux2.IN17
+entrada[2] => Mux3.IN17
+entrada[2] => Mux4.IN17
+entrada[2] => Mux5.IN17
+entrada[2] => Mux6.IN17
+entrada[2] => Mux7.IN9
+entrada[2] => Mux8.IN9
+entrada[2] => Mux9.IN9
+entrada[2] => Mux10.IN9
+entrada[3] => Mux0.IN16
+entrada[3] => Mux1.IN16
+entrada[3] => Mux2.IN16
+entrada[3] => Mux3.IN16
+entrada[3] => Mux4.IN16
+entrada[3] => Mux5.IN16
+entrada[3] => Mux6.IN16
+entrada[3] => Mux7.IN8
+entrada[3] => Mux8.IN8
+entrada[3] => Mux9.IN8
+entrada[3] => Mux10.IN8
+s[0] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
+s[1] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+s[2] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+s[3] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+s[4] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+s[5] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+s[6] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+s1[0] <= Mux10.DB_MAX_OUTPUT_PORT_TYPE
+s1[1] <= <GND>
+s1[2] <= <GND>
+s1[3] <= Mux9.DB_MAX_OUTPUT_PORT_TYPE
+s1[4] <= Mux8.DB_MAX_OUTPUT_PORT_TYPE
+s1[5] <= Mux7.DB_MAX_OUTPUT_PORT_TYPE
+s1[6] <= <VCC>
+
+
+|trabalho|seg7posicao:x7
+entrada[0] => Mux0.IN10
+entrada[0] => Mux1.IN10
+entrada[0] => Mux2.IN10
+entrada[0] => Mux3.IN10
+entrada[0] => Mux4.IN10
+entrada[0] => Mux5.IN10
+entrada[0] => Mux6.IN10
+entrada[1] => Mux0.IN9
+entrada[1] => Mux1.IN9
+entrada[1] => Mux2.IN9
+entrada[1] => Mux3.IN9
+entrada[1] => Mux4.IN9
+entrada[1] => Mux5.IN9
+entrada[1] => Mux6.IN9
+entrada[2] => Mux0.IN8
+entrada[2] => Mux1.IN8
+entrada[2] => Mux2.IN8
+entrada[2] => Mux3.IN8
+entrada[2] => Mux4.IN8
+entrada[2] => Mux5.IN8
+entrada[2] => Mux6.IN8
+s[0] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
+s[1] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
+s[2] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
+s[3] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+s[4] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+s[5] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+s[6] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+

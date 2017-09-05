@@ -1,0 +1,100 @@
+library ieee;
+use ieee.std_logic_1164.all;
+ENTITY trabalho IS
+PORT (
+		a : in std_logic_vector (3 downto 0);
+		b: in std_logic_vector (3 downto 0)		
+	
+);
+architecture arq_trabalho of trabalho is
+SIGNAL sinal1 : std_logic_vector (3 downto 0);
+SIGNAL sinal2 : std_logic_vector (6 downto 0);
+SIGNAL sinal3 : std_logic_vector (6 downto 0);
+SIGNAL sinal4 : std_logic_vector (3 downto 0);
+SIGNAL sinal5 : std_logic_vector (3 downto 0);
+SIGNAL sinal6 : std_logic_vector (2 downto 0);
+
+COMPONENT soma4 IS
+	PORT(
+  a, b: in std_logic_vector(3 downto 0);
+  s: out std_logic_vector(3 downto 0);
+  c4: out std_logic
+  );
+  end COMPONENT;
+  
+COMPONENT hamming IS
+ PORT(
+  a : in std_logic_vector(3 downto 0);
+  s: out std_logic_vector(6 downto 0)
+  );
+  end COMPONENT;
+  
+COMPONENT injeta IS
+PORT (
+	a : in std_logic_vector (6 downto 0);
+	erro : in std_logic_vector (2 downto 0);
+	saida : buffer std_logic_vector (6 downto 0)
+	); 
+	end COMPONENT;
+	
+COMPONENT decodham IS
+PORT (
+	a : in std_logic_vector (6 downto 0);
+	aout: out std_logic_vector (3 downto 0);
+	erro : out std_logic;
+	p : buffer std_logic_vector (2 downto 0);
+	corrigido: buffer std_logic_vector (6 downto 0);
+	corrigido4: out std_logic_vector (3 downto 0);
+	posicao : out std_logic_vector(2 downto 0);
+	saida : out std_logic_vector (3 downto 0)
+
+);
+end COMPONENT; 
+
+COMPONENT seg14recebido IS
+PORT ( 
+		entrada : in std_logic_vector (3 downto 0);
+		s : out std_logic_vector (6 downto 0);
+		s1 : out std_logic_vector (6 downto 0)
+		);
+end COMPONENT;
+
+COMPONENT seg14corrigido IS
+PORT ( 
+		entrada : in std_logic_vector (3 downto 0);
+		s : out std_logic_vector (6 downto 0);
+		s1 : out std_logic_vector (6 downto 0)
+		);
+end COMPONENT;
+
+COMPONENT seg7posicao IS
+PORT ( 
+		entrada : in std_logic_vector (3 downto 0);
+		s : out std_logic_vector (6 downto 0)
+	
+		);
+end COMPONENT;
+
+begin 
+entrada1 : soma4 
+port map (a=>a, b=>b,s=>sinal1);
+
+entrada2 : hamming
+port map (a=>sinal1,s=>sinal2);
+
+entrada3 : injeta
+port map (a=>sinal2,saida=>sinal3);
+
+entrada4 : decodham
+port map (a=>sinal3,aout=>sinal4,corrigido4=>sinal5,posicao=>sinal6);
+
+entrada5 : seg14recebido
+port map (entrada=>sinal4);
+
+entrada6 : seg14corrigido
+port map (entrada=>sinal5);
+
+entrada7 : seg7posicao
+port map (entrada=>sinal6);
+
+end arq_trabalho;
